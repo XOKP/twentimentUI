@@ -1,65 +1,79 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+// import { useState, useEffect } from "react";
+// import { useRouter } from "next/router";
+// import {
+//   isValidSearch,
+//   fetcher,
+//   CONTENT_ID,
+//   scrollToContent,
+//   Theme,
+//   ViewportOuterTop,
+//   ViewportOuterBottom,
+//   ViewportInner,
+//   Header,
+//   Form,
+//   StatusAlert,
+//   MainContent,
+// } from "../lib";
+// import twentiment from "twentiment";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+function HomePage({ query }) {
+  //   const router = useRouter();
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+  //   const [params, setParams] = useState(query);
+  //   const [pending, setPending] = useState();
+  //   const [data, setData] = useState();
+  //   const [error, setError] = useState();
+  //   const [view, setView] = useState("search");
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+  //   useEffect(() => {
+  //     router.push({ pathname: "/", query: params });
+  //   }, [params]);
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  //   useEffect(() => {
+  //     !data &&
+  //       !pending &&
+  //       isValidSearch(query.search) &&
+  //       (() => {
+  //         setPending(true);
+  //         setError();
+  //         fetcher({ resource: "/search", method: "GET", query })
+  //           .then((responseData) => {
+  //             setData(responseData);
+  //             setView("search");
+  //             scrollToContent();
+  //           })
+  //           .catch(setError)
+  //           .finally(setPending);
+  //       })();
+  //   }, [query]);
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+  return "asdasdasdasasd";
+  //   return (
+  //     <Theme>
+  //       <Header setView={setView} />
+  //       <ViewportOuterTop>
+  //         <ViewportInner>
+  //           <Form params={params} setParams={setParams} pending={pending} />
+  //         </ViewportInner>
+  //       </ViewportOuterTop>
+  //       <ViewportOuterBottom id={CONTENT_ID}>
+  //         <ViewportInner>
+  //           <MainContent
+  //             pending={pending}
+  //             query={query}
+  //             view={view}
+  //             setView={setView}
+  //             data={data}
+  //           />
+  //         </ViewportInner>
+  //       </ViewportOuterBottom>
+  //       <StatusAlert error={error} />
+  //     </Theme>
+  //   );
 }
+
+export async function getServerSideProps({ query }) {
+  return { props: { query } };
+}
+
+export default HomePage;
