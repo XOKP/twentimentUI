@@ -1,36 +1,33 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 // import { useRouter } from "next/router";
-// import {
-//   isValidSearch,
-//   fetcher,
-//   CONTENT_ID,
-//   scrollToContent,
-//   Theme,
-//   ViewportOuterTop,
-//   ViewportOuterBottom,
-//   ViewportInner,
-//   Header,
-//   Form,
-//   StatusAlert,
-//   MainContent,
-// } from "../lib";
-// import twentiment from "twentiment";
+import {
+  Theme,
+  Header,
+  BackgroundOuterTop,
+  BackgroundInner,
+  Form,
+  //   isValidSearch,
+  //   fetcher,
+  //   CONTENT_ID,
+  //   scrollToContent,
+  //   StatusAlert,
+  //   MainContent,
+} from "../lib";
 
 function HomePage({ query }) {
   //   const router = useRouter();
 
-  //   const [params, setParams] = useState(query);
-  //   const [pending, setPending] = useState();
+  const [view, setView] = useState("search");
+  const [params, setParams] = useState(query);
+  const [pending, setPending] = useState();
   //   const [data, setData] = useState();
   //   const [error, setError] = useState();
-  //   const [view, setView] = useState("search");
 
   //   useEffect(() => {
   //     router.push({ pathname: "/", query: params });
   //   }, [params]);
 
   //   useEffect(() => {
-  //     !data &&
   //       !pending &&
   //       isValidSearch(query.search) &&
   //       (() => {
@@ -47,15 +44,16 @@ function HomePage({ query }) {
   //       })();
   //   }, [query]);
 
-  return "asdasdasdasasd";
-  //   return (
-  //     <Theme>
-  //       <Header setView={setView} />
-  //       <ViewportOuterTop>
-  //         <ViewportInner>
-  //           <Form params={params} setParams={setParams} pending={pending} />
-  //         </ViewportInner>
-  //       </ViewportOuterTop>
+  return (
+    <Theme>
+      <Header setView={setView} />
+      <BackgroundOuterTop>
+        <BackgroundInner>
+          <Form params={params} setParams={setParams} pending={pending} />
+        </BackgroundInner>
+      </BackgroundOuterTop>
+    </Theme>
+  );
   //       <ViewportOuterBottom id={CONTENT_ID}>
   //         <ViewportInner>
   //           <MainContent
@@ -68,8 +66,6 @@ function HomePage({ query }) {
   //         </ViewportInner>
   //       </ViewportOuterBottom>
   //       <StatusAlert error={error} />
-  //     </Theme>
-  //   );
 }
 
 export async function getServerSideProps({ query }) {
