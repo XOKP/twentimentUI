@@ -17,6 +17,6 @@
     "react-dom": "16.13.1",
     "sanitized": "^1.0.5",
     "styled-components": "^5.2.0",
-    "twentiment": "0.0.5"
+    "twentiment": "0.0.6"
   }
 }

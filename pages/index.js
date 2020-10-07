@@ -28,8 +28,7 @@ function HomePage({ query }) {
   }, [params]);
 
   useEffect(() => {
-    !data &&
-      !pending &&
+    !pending &&
       isValidSearch(query.search) &&
       (() => {
         setPending(true);
