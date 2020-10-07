@@ -13,5 +13,5 @@ export default (req, res) =>
     isValidSearch
       ? (updatePopularSearches(requestQuery.search),
         sendTwentiment(requestQuery, res))
-      : res.status(400).send("Invalid search string.");
+      : res.status(500).send("Invalid search.");
   })();

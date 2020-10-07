@@ -11,11 +11,12 @@ function updatePopularSearches(search) {
 
   const groupIndex = groups.findIndex((i) =>
     i.variations.some(
-      (j) =>
-        j === cleanSearch ||
+      (variation) =>
+        variation === cleanSearch ||
         (cleanSearch.length > 4 &&
-          (j.includes(cleanSearch) || cleanSearch.includes(j))) ||
-        levenshtein.get(cleanSearch, j, { useCollator: true }) < 3
+          (variation.includes(cleanSearch) ||
+            cleanSearch.includes(variation))) ||
+        levenshtein.get(cleanSearch, variation, { useCollator: true }) < 3
     )
   );
 

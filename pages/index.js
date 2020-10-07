@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import {
   Theme,
   Header,
-  BackgroundOuterTop,
+  BackgroundOuterOne,
   BackgroundInner,
   Form,
-  BackgroundOuterBottom,
-  MainContent,
+  BackgroundOuterTwo,
+  Main,
   StatusAlert,
   isValidSearch,
   fetcher,
@@ -31,38 +31,30 @@ function HomePage({ query }) {
     !pending &&
       isValidSearch(query.search) &&
       (() => {
-        setPending(true);
-        setError();
-        fetcher({ resource: "/search", method: "GET", query })
-          .then((responseData) => {
-            setData(responseData);
-            setView("search");
-            scroll.toContent();
-          })
-          .catch(setError)
-          .finally(setPending);
+        // setPending(true);
+        // setError();
+        // fetcher({ resource: "/search", method: "GET", query })
+        //   .then((responseData) => {
+        //     setData(responseData);
+        //     setView("search");
+        //     scroll.toMain();
+        //   })
+        //   .catch(setError)
+        //   .finally(setPending);
       })();
   }, [query]);
 
   return (
     <Theme>
       <Header setView={setView} />
-      <BackgroundOuterTop>
-        <BackgroundInner>
-          <Form params={params} setParams={setParams} pending={pending} />
-        </BackgroundInner>
-      </BackgroundOuterTop>
-      <BackgroundOuterBottom>
-        <BackgroundInner>
-          <MainContent
-            pending={pending}
-            query={query}
-            view={view}
-            setView={setView}
-            data={data}
-          />
-        </BackgroundInner>
-      </BackgroundOuterBottom>
+      <Form params={params} setParams={setParams} pending={pending} />
+      <Main
+        pending={pending}
+        query={query}
+        view={view}
+        setView={setView}
+        data={data}
+      />
       <StatusAlert error={error} />
     </Theme>
   );
