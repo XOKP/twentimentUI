@@ -49,11 +49,11 @@ function HomePage({ query }) {
       <Header setView={setView} />
       <Form params={params} setParams={setParams} pending={pending} />
       <Main
-        pending={pending}
         query={query}
+        data={data}
         view={view}
         setView={setView}
-        data={data}
+        pending={pending}
       />
       <StatusAlert error={error} />
     </Theme>
