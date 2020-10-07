@@ -31,16 +31,16 @@ function HomePage({ query }) {
     !pending &&
       isValidSearch(query.search) &&
       (() => {
-        // setPending(true);
-        // setError();
-        // fetcher({ resource: "/search", method: "GET", query })
-        //   .then((responseData) => {
-        //     setData(responseData);
-        //     setView("search");
-        //     scroll.toMain();
-        //   })
-        //   .catch(setError)
-        //   .finally(setPending);
+        setPending(true);
+        setError();
+        fetcher({ resource: "/search", method: "GET", query })
+          .then((responseData) => {
+            setData(responseData);
+            setView("search");
+            scroll.toMain();
+          })
+          .catch(setError)
+          .finally(setPending);
       })();
   }, [query]);
 
