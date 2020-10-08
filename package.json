@@ -14,6 +14,7 @@
     "jsontxt": "0.0.3",
     "next": "9.5.3",
     "react": "16.13.1",
+    "react-charts": "^2.0.0-beta.7",
     "react-dom": "16.13.1",
     "sanitized": "^1.0.5",
     "styled-components": "^5.2.0",
