@@ -43,7 +43,7 @@ function HomePage({ query }) {
           .catch(setError)
           .finally(setPending);
       })();
-  }, [query.search]);
+  }, [query]);
 
   return (
     <Theme>
