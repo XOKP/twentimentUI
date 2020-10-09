@@ -1,3 +1,4 @@
+import ReactGA from "react-ga";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
@@ -26,6 +27,11 @@ function HomePage({ query }) {
 
   useEffect(() => {
     router.push({ pathname: "/", query: params });
+    process.env.NODE_ENV === "production" &&
+      window &&
+      ReactGA.pageview(
+        window.location.pathname + "?" + new URLSearchParams(params)
+      );
   }, [params]);
 
   useEffect(() => {
