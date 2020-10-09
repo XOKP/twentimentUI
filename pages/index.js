@@ -27,12 +27,17 @@ function HomePage({ query }) {
 
   useEffect(() => {
     router.push({ pathname: "/", query: params });
+  }, [params]);
+
+  useEffect(() => {
     process.env.NODE_ENV === "production" &&
       window &&
       ReactGA.pageview(
-        window.location.pathname + "?" + new URLSearchParams(params)
+        window.location.pathname +
+          "?" +
+          new URLSearchParams({ ...params, view })
       );
-  }, [params]);
+  }, [params, view]);
 
   useEffect(() => {
     !pending &&
