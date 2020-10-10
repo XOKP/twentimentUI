@@ -5,16 +5,8 @@ function sendTwentiment(requestQuery, res) {
 
   delete requestQuery.from;
 
-  function sendFilteredData(data) {
-    data.tweets = data.tweets.filter(
-      (tweet, index, self) =>
-        index === self.findIndex((_tweet) => _tweet.tweet === tweet.tweet)
-    );
-    res.json(data);
-  }
-
-  twentiment({ ...requestQuery, pages: 4 })
-    .then(sendFilteredData)
+  twentiment({ ...requestQuery, pages: 2 })
+    .then((data) => res.json(data))
     .catch((err) => res.status(500).send(err));
 }
 

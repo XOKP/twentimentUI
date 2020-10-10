@@ -12,16 +12,13 @@ import {
   Main,
   StatusAlert,
   isValidSearch,
-  fetcher,
   scroll,
 } from "../lib";
+import useAsyncFetch from "async-fetch";
 
 function HomePage({ query }) {
   const [view, setView] = useState("search");
   const [params, setParams] = useState(query);
-  const [pending, setPending] = useState();
-  const [data, setData] = useState();
-  const [error, setError] = useState();
 
   const router = useRouter();
 
@@ -39,22 +36,16 @@ function HomePage({ query }) {
       );
   }, [params, view]);
 
-  useEffect(() => {
-    !pending &&
-      isValidSearch(query.search) &&
-      (() => {
-        setPending(true);
-        setError();
-        fetcher({ resource: "/search", method: "GET", query })
-          .then((responseData) => {
-            setData(responseData);
-            setView("search");
-            scroll.toMain();
-          })
-          .catch(setError)
-          .finally(setPending);
-      })();
-  }, [query]);
+  const { data, pending, error, sendRequest } = useAsyncFetch({
+    useEffectDependency: [query],
+    condition: isValidSearch(query.search),
+    url: "/api/search",
+    query,
+    onSuccess: () => {
+      setView("search");
+      scroll.toMain();
+    },
+  });
 
   return (
     <Theme>
@@ -67,6 +58,7 @@ function HomePage({ query }) {
         view={view}
         setView={setView}
         pending={pending}
+        error={error}
       />
       <StatusAlert error={error} />
     </Theme>

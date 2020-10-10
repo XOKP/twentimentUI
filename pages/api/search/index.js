@@ -4,14 +4,23 @@ import { isValidSearch as validateSearch } from "../../../lib";
 import sendTwentiment from "./sendTwentiment";
 
 export default (req, res) =>
-  req.method === "GET" &&
-  (() => {
-    const requestQuery = sanitized(req.query);
+  req.method === "GET"
+    ? (() => {
+        const requestQuery = sanitized(req.query);
 
-    const isValidSearch = validateSearch(requestQuery.search);
+        const isValidSearch = validateSearch(requestQuery.search);
 
-    isValidSearch
-      ? sendTwentiment(requestQuery, res)
-      : res.status(400).send("Invalid search.");
-    // updatePopularSearches(requestQuery.search)
-  })();
+        // *******************
+        //
+        // updatePopularSearches(requestQuery.search)
+        //   .then(sendTwentiment(requestQuery))
+        //   .then((data) => res.json(data))
+        //   .catch();
+        //
+        // *******************
+
+        isValidSearch
+          ? sendTwentiment(requestQuery, res)
+          : res.status(400).send("Invalid search.");
+      })()
+    : res.status(400).send("Request method not supported.");
