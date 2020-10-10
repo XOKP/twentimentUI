@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import ElectionMethods from "./Election";
+import SearchMethods from "./Search";
 
 mongoose.connect(process.env.MONGODB_URI, {
   w: "majority",
@@ -11,4 +12,4 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 });
 
-export default { Election: ElectionMethods };
+export default { Election: ElectionMethods, Search: SearchMethods };
