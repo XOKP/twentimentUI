@@ -21,7 +21,7 @@ const getMostPopular = () =>
                     variationGroup.findIndex(
                       (variation) =>
                         string === variation ||
-                        (string.length > 4 &&
+                        (string.length >= 4 &&
                           (string.includes(variation) ||
                             variation.includes(string))) ||
                         levenshtein.get(string, variation, {

@@ -1,6 +1,7 @@
 import ReactGA from "react-ga";
 
-process.env.NODE_ENV === "production" && ReactGA.initialize("UA-180169708-1");
+process.env.NODE_ENV === "production" &&
+  ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID);
 
 const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
 
