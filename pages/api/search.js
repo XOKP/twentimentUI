@@ -32,7 +32,7 @@ export default (req, res) =>
           res.json(twentimentResults);
         }
 
-        function sentTwentimentError(twentimentError) {
+        function sendTwentimentError(twentimentError) {
           updateConcurrentRequests(-1);
           res.status(500).send(twentimentError);
         }
@@ -41,7 +41,7 @@ export default (req, res) =>
           ? db.Search.save(requestQuery.search)
               .then(getTwentimentResults)
               .then(sendTwentimentResults)
-              .catch(sentTwentimentError)
+              .catch(sendTwentimentError)
           : res.status(400).send("Invalid search.");
       })()
     : res.status(400).send("Request method not supported.");
