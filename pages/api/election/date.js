@@ -9,4 +9,4 @@ export default (req, res) =>
       })
         .then((data) => res.json(data))
         .catch((err) => res.status(500).send(err))
-    : res.status(400).send("Request method not supported.");
+    : res.status(405).send("Request method not supported.");

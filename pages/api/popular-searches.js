@@ -5,4 +5,4 @@ export default (req, res) =>
     ? db.Search.getMostPopular()
         .then((mostPopularSearches) => res.json(mostPopularSearches))
         .catch((err) => res.status(500).send(err))
-    : res.status(400).send("Request method not supported.");
+    : res.status(405).send("Request method not supported.");

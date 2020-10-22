@@ -44,4 +44,4 @@ export default (req, res) =>
               .catch(sendTwentimentError)
           : res.status(400).send("Invalid search.");
       })()
-    : res.status(400).send("Request method not supported.");
+    : res.status(405).send("Request method not supported.");
