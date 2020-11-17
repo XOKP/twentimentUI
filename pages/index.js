@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   Theme,
-  HTMLMeta,
+  HTMLHead,
   Header,
   BackgroundOuterOne,
   BackgroundInner,
@@ -49,7 +49,7 @@ function HomePage({ query }) {
 
   return (
     <Theme>
-      <HTMLMeta />
+      <HTMLHead />
       <Header setView={setView} />
       <Form params={params} setParams={setParams} pending={pending} />
       <Main
@@ -65,8 +65,6 @@ function HomePage({ query }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
-  return { props: { query } };
-}
+export const getServerSideProps = async ({ query }) => ({ props: { query } });
 
 export default HomePage;

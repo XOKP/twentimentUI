@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const searchSchema = new Schema(
   { string: String },
-  { capped: { size: 15000, max: 250 } }
+  { capped: { size: 10000, max: 150 } }
 );
 
 const SearchModel =
