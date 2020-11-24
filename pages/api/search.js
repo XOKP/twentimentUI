@@ -3,8 +3,6 @@ import { isValidSearch as validateSearch } from "../../lib";
 import db from "../../db";
 import twentiment from "twentiment";
 
-let concurrentRequests = 0;
-
 export default (req, res) =>
   req.method === "GET"
     ? (() => {
@@ -12,30 +10,17 @@ export default (req, res) =>
 
         const isValidSearch = validateSearch(requestQuery.search);
 
-        function updateConcurrentRequests(update) {
-          concurrentRequests = concurrentRequests + update;
-          const indicator = update === 1 ? "➕" : "➖";
-          console.log(
-            `${indicator} CONCURRENT REQUESTS: ${concurrentRequests}.`
-          );
-        }
-
         function getTwentimentResults() {
           requestQuery.from && (requestQuery.since = requestQuery.from);
           delete requestQuery.from;
-          updateConcurrentRequests(1);
           return twentiment(requestQuery);
         }
 
-        function sendTwentimentResults(twentimentResults) {
-          updateConcurrentRequests(-1);
+        const sendTwentimentResults = (twentimentResults) =>
           res.json(twentimentResults);
-        }
 
-        function sendTwentimentError(twentimentError) {
-          updateConcurrentRequests(-1);
+        const sendTwentimentError = (twentimentError) =>
           res.status(500).send(twentimentError);
-        }
 
         isValidSearch
           ? db.Search.save(requestQuery.search)
