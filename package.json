@@ -10,7 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "async-fetch": "0.0.4",
+    "async-fetch": "0.0.6",
     "fast-levenshtein": "^3.0.0",
     "mongoose": "^5.10.9",
     "next": "^10.0.3",
