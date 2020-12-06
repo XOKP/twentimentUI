@@ -20,6 +20,7 @@
     "react-ga": "^3.1.2",
     "sanitized": "^1.0.5",
     "styled-components": "^5.2.0",
+    "styled-icons": "^10.22.0",
     "twentiment": "0.0.7"
   }
 }
